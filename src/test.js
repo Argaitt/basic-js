@@ -1,15 +1,31 @@
-function carbonDatin(sampleActivity) {
-    if (typeof(sampleActivity) != "string" ) {
+function testFunc(members) {
+    let re = /^[A-Z,a-z]/, result = [];
+    if (!Array.isArray(members)) {
+      return false;
+    }
+    members.forEach(element => {
+        if (typeof(element) == "string" && element != null) {
+            result.push(element.trim().match(re)); 
+        }
+    });
+    if (result != null) {
+        result.forEach((element, index, arr) => {arr[index] = element.toString().toUpperCase()})
+        return result.sort().join('');
+    } else {
         return false;
-      } else {
-        sampleActivity = parseFloat(sampleActivity);
-        let k = 0.693/HALF_LIFE_PERIOD;
-        return Math.round(Math.log(MODERN_ACTIVITY/sampleActivity)/k)
-      }
+    }
 };
 
-countCats([
-    ['##', 'dd', '00'],
-    ['^^', '..', 'ss'],
-    ['AA', 'dd', 'Oo'],
+testFunc([
+    ['David Abram'],
+    ['Robin Attfield'],
+    'Thomas Berry',
+    ['Paul R.Ehrlich'],
+    'donna Haraway',
+    ' BrIaN_gOodWiN  ',
+    {
+      0: 'Serenella Iovino'
+    },
+    'Erazim Kohak',
+    '  val_plumwood',
   ]);
